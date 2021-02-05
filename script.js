@@ -21,8 +21,9 @@ window.onload = function(){
   //document.body.style.backgroundColor = "white";
   document.body.style.padding = "5px";
   document.body.style.fontFamily = "PT Sans";
-  document.body.style.background="linear-gradient(45deg, rgba(27,94,215,1) 0%, rgba(43,233,206,1) 100%)";
-  document.body.style.height="650px";
+  document.body.style.backgroundImage="linear-gradient(45deg, rgba(27,94,215,1) 0%, rgba(43,233,206,1) 100%)";
+  document.body.style.height="cover";
+  document.body.style.backgroundSize="cover";
 
 }
 
@@ -54,6 +55,8 @@ function createUser(){
   headerLog.style.marginLeft="-60px";
   headerLog.style.marginRight="-60px";
   headerLog.style.marginTop="-60px";
+  headerLog.style.display="flex";
+  headerLog.style.flexDirection="column";
 
   logContainer.appendChild(headerLog);
 
@@ -63,6 +66,9 @@ function createUser(){
   logTxt.style.textAlign="center";
   logTxt.style.fontWeight="bold";
   logTxt.style.marginTop="35px";
+  logTxt.style.display="flex";
+  logTxt.style.flexDirection="column";
+
   logTxt.appendChild(textA);
   logContainer.appendChild(logTxt);
 
@@ -74,9 +80,12 @@ function createUser(){
   user.setAttribute("placeholder", "Username");
   user.style.padding="6px";
   user.style.margin="auto";
+  user.style.marginTop="30px";
   user.style.border="0";
   user.style.borderRadius="8px";
   user.style.backgroundColor=backColor;
+  user.style.display="flex";
+  user.style.flexDirection="column";
 
   user.style.fontFamily="PT Sans";
 
@@ -97,7 +106,7 @@ function createUser(){
   logButt.style.paddingBottom="6px";
   logButt.style.marginRight="15px";
   logButt.style.marginLeft="15px";
-  logButt.style.marginTop="25px";
+  logButt.style.marginTop="10px";
   logButt.style.borderRadius="16px";
   logButt.style.color="white";
   logButt.style.fontFamily="PT Sans";

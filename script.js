@@ -5,6 +5,7 @@
 * 19946
 */
 
+
 var chatContainernput;
 var chatContainer;
 let refresh;
@@ -17,20 +18,54 @@ let backColor = '#DFDFDF';
 
 window.onload = function(){
   createUser();
+  loadingCircle();
 
   //document.body.style.backgroundColor = "white";
-  document.body.style.padding = "5px";
+  document.body.style.padding = "cover";
   document.body.style.fontFamily = "PT Sans";
   document.body.style.backgroundImage="linear-gradient(45deg, rgba(27,94,215,1) 0%, rgba(43,233,206,1) 100%)";
-  document.body.style.height="cover";
-  document.body.style.backgroundSize="cover";
+  document.body.style.backgroundSize="100vw";
 
+}
+
+function loadingCircle(){
+
+  var loader = document.createElement('div');
+  loader.id = "loader";
+  loader.style.position="absolute";
+  loader.style.display="none";
+  loader.style.right="50%";
+  loader.style.top="50%";
+  loader.style.transform="translate(-50%, -50%)";
+  loader.style.border = "12px solid #64F0D7";
+  loader.style.borderRadius="50%";
+  loader.style.borderTop="12px solid black";
+  loader.style.width="80px";
+  loader.style.height="80px";
+  loader.style.marginLeft="auto";
+  loader.style.marginRight="auto";
+  loader.style.animation="spin 2s linear infinite";
+  document.body.appendChild(loader);
+
+}
+
+function showLoader(){
+  load = document.getElementById('loader');
+  load.style.display='';
+  console.log("entre al metodo");
+}
+
+function hideLoader(){
+  load = document.getElementById('loader');
+  load.style.display='none';
+  console.log("entre al metodo");
 }
 
 function createUser(){
 
 //login container
   var logContainer = document.createElement('div');
+  logContainer.id ='divLogin';
 
   logContainer.style.border="0";
   logContainer.style.borderRadius="20px";
@@ -46,6 +81,7 @@ function createUser(){
 
 //header of container
   var headerLog = document.createElement('div');
+  headerLog.id ='divLogin1';
 
   headerLog.style.border="0";
   headerLog.style.borderRadius="20px 20px 0px 0px";
@@ -97,6 +133,7 @@ function createUser(){
   var logButt = document.createElement('button');
   var textB = document.createTextNode('LOGIN');
 
+  logButt.id ="btnlog";
   logButt.style.marginTop="25px";
   logButt.style.background="linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(11,81,208,1) 100%)";
   logButt.style.border="0"
@@ -114,6 +151,24 @@ function createUser(){
 
   logButt.appendChild(textB);
   logContainer.appendChild(logButt);
-  //const login = document.querySelector(".btnadd")
+
+  document.getElementById("btnlog").addEventListener("click", hideLogin);
 
 }
+
+//funcion para ocultar ventana de login
+function hideLogin(){
+  div = document.getElementById('divLogin');
+  div1 = document.getElementById('divLogin1');
+
+  div.style.display='none';
+  div1.style.display='none';
+
+  showLoader();
+
+  console.log("entre al metodo");
+}
+
+
+
+//FALTA MOSTRAR LOADER Y CREAR CHAT

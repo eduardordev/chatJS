@@ -6,8 +6,7 @@
 */
 
 
-var chatContainernput;
-var chatContainer;
+
 let refresh;
 var nxtln = document.createElement('br');
 
@@ -28,39 +27,6 @@ window.onload = function(){
 
 }
 
-function loadingCircle(){
-
-  var loader = document.createElement('div');
-  loader.id = "loader";
-  loader.style.position="absolute";
-  loader.style.display="none";
-  loader.style.right="50%";
-  loader.style.top="50%";
-  loader.style.transform="translate(-50%, -50%)";
-  loader.style.border = "12px solid #64F0D7";
-  loader.style.borderRadius="50%";
-  loader.style.borderTop="12px solid black";
-  loader.style.width="80px";
-  loader.style.height="80px";
-  loader.style.marginLeft="auto";
-  loader.style.marginRight="auto";
-  loader.style.animation="spin 2s linear infinite";
-  document.body.appendChild(loader);
-
-}
-
-function showLoader(){
-  load = document.getElementById('loader');
-  load.style.display='';
-  console.log("entre al metodo");
-}
-
-function hideLoader(){
-  load = document.getElementById('loader');
-  load.style.display='none';
-  console.log("entre al metodo");
-}
-
 function createUser(){
 
 //login container
@@ -68,6 +34,7 @@ function createUser(){
   logContainer.id ='divLogin';
 
   logContainer.style.border="0";
+  //logContainer.style.boxShadow = "5px 5px 2px #1b5ed7";
   logContainer.style.borderRadius="20px";
   logContainer.style.backgroundColor="white";
   logContainer.style.padding="60px";
@@ -165,10 +132,87 @@ function hideLogin(){
   div1.style.display='none';
 
   showLoader();
+  waitTime();
 
+  //console.log("entre al metodo");
+}
+
+function loadingCircle(){
+
+  var loader = document.createElement('div');
+  loader.id = "loader";
+  loader.style.position="absolute";
+  loader.style.display="none";
+  loader.style.right="50%";
+  loader.style.top="50%";
+  loader.style.transform="translate(-50%, -50%)";
+  loader.style.border = "12px solid #64F0D7";
+  loader.style.borderRadius="50%";
+  loader.style.borderTop="12px solid white";
+  loader.style.width="80px";
+  loader.style.height="80px";
+  loader.style.marginLeft="auto";
+  loader.style.marginRight="auto";
+  loader.style.animation="spin 2s linear infinite";
+  loader.style.alignContent="center";
+  document.body.appendChild(loader);
+
+}
+
+function showLoader(){
+  load = document.getElementById('loader');
+  load.style.display='';
   console.log("entre al metodo");
+}
+
+function hideLoader(){
+  load = document.getElementById('loader');
+  load.style.display='none';
+  console.log("entre al metodo");
+}
+
+function waitTime(){
+  var time = setTimeout(showChat, 2000);
+}
+
+function showChat(){
+  hideLoader();
+
+  var chatContainer = document.createElement("div");
+
+  chatContainer.style.border="0";
+  //chatContainer.style.boxShadow = "5px 5px 2px #1b5ed7";
+  chatContainer.style.borderRadius="15px";
+  chatContainer.style.backgroundColor="white";
+  chatContainer.style.paddingLeft="200px";
+  chatContainer.style.paddingRight="200px";
+  chatContainer.style.paddingTop="250px";
+  chatContainer.style.paddingBottom="250px";
+  chatContainer.style.position="absolute";
+  chatContainer.style.left="50%";
+  chatContainer.style.top="50%";
+  chatContainer.style.transform="translate(-50%, -50%)";
+  chatContainer.style.alignContent="center";
+  //console.log("chatContainer");
+
+  document.body.appendChild(chatContainer);
+
+  var chatHeader = document.createElement('div');
+  chatHeader.style.border="0";
+  chatHeader.style.borderRadius="15px 15px 0px 0px";
+  chatHeader.style.background="linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(11,81,208,1) 100%)";
+  chatHeader.style.paddingTop="30px";
+  chatHeader.style.paddingBottom="30px";
+  chatHeader.style.marginLeft="-200px";
+  chatHeader.style.marginRight="-200px";
+  chatHeader.style.marginTop="-250px";
+  chatHeader.style.display="flex";
+  chatHeader.style.flexDirection="column";
+
+  chatContainer.appendChild(chatHeader);
+
 }
 
 
 
-//FALTA MOSTRAR LOADER Y CREAR CHAT
+//CREAR CHAT

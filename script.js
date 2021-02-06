@@ -30,7 +30,7 @@ window.onload = function(){
 function createUser(){
 
 //login container
-  var logContainer = document.createElement('div');
+  var logContainer = document.createElement('FORM');
   logContainer.id ='divLogin';
 
   logContainer.style.border="0";
@@ -79,6 +79,8 @@ function createUser(){
 
   var user = document.createElement('input');
 
+  user.id = "username";
+
   user.setAttribute("type", "text");
   user.setAttribute("placeholder", "Username");
   user.style.padding="6px";
@@ -100,6 +102,7 @@ function createUser(){
   var logButt = document.createElement('button');
   var textB = document.createTextNode('LOGIN');
 
+  logButt.setAttribute("type", "submit");
   logButt.id ="btnlog";
   logButt.style.marginTop="25px";
   logButt.style.background="linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(11,81,208,1) 100%)";
@@ -119,8 +122,27 @@ function createUser(){
   logButt.appendChild(textB);
   logContainer.appendChild(logButt);
 
-  document.getElementById("btnlog").addEventListener("click", hideLogin);
 
+  const name = document.getElementById("username");
+
+  divLogin.addEventListener("submit", (e) =>{
+
+    e.preventDefault();
+    checkInput();
+  });
+  
+}
+function checkInput(){
+
+  if(name.value === ''){
+    setErrorFor();
+  }else{
+    hideLogin();
+  }
+}
+
+function setErrorFor(){
+  alert("Nombre de usuario requerido");
 }
 
 //funcion para ocultar ventana de login
@@ -135,6 +157,14 @@ function hideLogin(){
   waitTime();
 
   //console.log("entre al metodo");
+}
+
+function showLogin(){
+  div = document.getElementById('divLogin');
+  div1 = document.getElementById('divLogin1');
+
+  div.style.display='';
+  div1.style.display='';
 }
 
 function loadingCircle(){
@@ -158,23 +188,23 @@ function loadingCircle(){
   document.body.appendChild(loader);
 
 }
-
+//mostrar el loader
 function showLoader(){
   load = document.getElementById('loader');
   load.style.display='';
-  console.log("entre al metodo");
+  //console.log("entre al metodo");
 }
-
+//ocultar el loader
 function hideLoader(){
   load = document.getElementById('loader');
   load.style.display='none';
-  console.log("entre al metodo");
+  //console.log("entre al metodo");
 }
-
+//esperar antes de mostrar chat
 function waitTime(){
   var time = setTimeout(showChat, 2000);
 }
-
+//mostrar chat
 function showChat(){
   hideLoader();
 
@@ -184,16 +214,15 @@ function showChat(){
   //chatContainer.style.boxShadow = "5px 5px 2px #1b5ed7";
   chatContainer.style.borderRadius="15px";
   chatContainer.style.backgroundColor="white";
-  chatContainer.style.paddingLeft="200px";
-  chatContainer.style.paddingRight="200px";
-  chatContainer.style.paddingTop="250px";
-  chatContainer.style.paddingBottom="250px";
-  chatContainer.style.position="absolute";
-  chatContainer.style.left="50%";
-  chatContainer.style.top="50%";
-  chatContainer.style.transform="translate(-50%, -50%)";
-  chatContainer.style.alignContent="center";
-  //console.log("chatContainer");
+  chatContainer.style.width="420px";
+  chatContainer.style.height="550px";
+  chatContainer.style.marginLeft="auto";
+  chatContainer.style.marginRight="auto";
+  chatContainer.style.marginTop="55px";
+  chatContainer.style.marginBottom="55px";
+  chatContainer.style.display="block";
+  chatContainer.style.flexDirection="column";
+  
 
   document.body.appendChild(chatContainer);
 
@@ -201,15 +230,74 @@ function showChat(){
   chatHeader.style.border="0";
   chatHeader.style.borderRadius="15px 15px 0px 0px";
   chatHeader.style.background="linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(11,81,208,1) 100%)";
-  chatHeader.style.paddingTop="30px";
-  chatHeader.style.paddingBottom="30px";
-  chatHeader.style.marginLeft="-200px";
-  chatHeader.style.marginRight="-200px";
-  chatHeader.style.marginTop="-250px";
+  chatHeader.style.width="420px";
+  chatHeader.style.height="70px";
+  
+  
   chatHeader.style.display="flex";
-  chatHeader.style.flexDirection="column";
+  chatHeader.style.flexDirection="row";
 
   chatContainer.appendChild(chatHeader);
+
+  const name = document.getElementById("username");
+  const usern = name.value;
+
+  var profName = document.createElement("H3");
+  profName.style.color="black";
+  profName.style.textAlign="center";
+  profName.innerHTML = usern;
+  profName.style.padding="0";
+  profName.style.margin="0";
+  profName.style.marginTop="auto";
+  profName.style.marginBottom="auto";
+  profName.style.marginLeft="auto";
+  profName.style.marginRight="auto";
+
+  chatHeader.appendChild(profName);
+
+  var iconUser = document.createElement("IMG");
+  iconUser.setAttribute("src", "icons/icon1.png");
+  iconUser.style.width="35px";
+  iconUser.style.height="35px";
+  iconUser.style.margin="0";
+  iconUser.style.marginTop="auto";
+  iconUser.style.marginBottom="auto";
+  iconUser.style.marginLeft="200px";
+  iconUser.style.marginRight="auto";
+  
+  chatHeader.appendChild(iconUser);
+  
+  var messages = document.createElement("div");
+
+  messages.style.background="white";
+  messages.style.height="395px";
+  messages.style.width="400px";
+  chatContainer.appendChild(messages);
+
+
+  var typearea = document.createElement("TEXTAREA");
+
+   typearea.id = "typearea";
+   typearea.maxLength = "140";
+   typearea.placeholder = "Escribe un mensaje aquí";
+   typearea.style.fontFamily="PT Sans";
+   typearea.autofocus = "true";
+   typearea.style.color = 'black';
+   typearea.style.padding = "10px";
+   typearea.style.width = "400px";
+   typearea.style.height = "80px";
+   typearea.style.border = "2px solid #C7CCED ";
+   typearea.style.borderLeft = "none";
+   typearea.style.borderRight = "none";
+   typearea.style.borderBottom = "none";
+   typearea.style.borderRadius="0px 0px 15px 15px";
+   typearea.style.display="relative";
+   typearea.style.bottom = "0";
+   
+   typearea.style.resize="none";
+
+  chatContainer.appendChild(typearea);
+
 
 }
 

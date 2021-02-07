@@ -207,7 +207,7 @@ function waitTime(){
 //mostrar chat
 function showChat(){
   hideLoader();
-
+// container del chat
   var chatContainer = document.createElement("div");
 
   chatContainer.style.border="0";
@@ -225,7 +225,7 @@ function showChat(){
   
 
   document.body.appendChild(chatContainer);
-
+//header del chat
   var chatHeader = document.createElement('div');
   chatHeader.style.border="0";
   chatHeader.style.borderRadius="15px 15px 0px 0px";
@@ -241,7 +241,7 @@ function showChat(){
 
   const name = document.getElementById("username");
   const usern = name.value;
-
+//detalles del perfil
   var profName = document.createElement("H3");
   profName.style.color="black";
   profName.style.textAlign="center";
@@ -274,7 +274,7 @@ function showChat(){
   messages.style.width="400px";
   chatContainer.appendChild(messages);
 
-
+//type area
   var typearea = document.createElement("TEXTAREA");
 
    typearea.id = "typearea";
@@ -284,8 +284,8 @@ function showChat(){
    typearea.autofocus = "true";
    typearea.style.color = 'black';
    typearea.style.padding = "10px";
-   typearea.style.width = "400px";
-   typearea.style.height = "80px";
+   typearea.style.width = "320px";
+   typearea.style.height = "63px";
    typearea.style.border = "2px solid #C7CCED ";
    typearea.style.borderLeft = "none";
    typearea.style.borderRight = "none";
@@ -298,7 +298,54 @@ function showChat(){
 
   chatContainer.appendChild(typearea);
 
+  var send = document.createElement("button");
 
+  send.id ="sendButton";
+
+  send.style.height="85px";
+  send.style.width="80px";
+  send.style.background="linear-gradient(45deg, rgba(4,133,6,1) 0%, rgba(13,255,0,1) 100%)";
+  send.style.border="0";
+  send.style.borderRadius="0px 0px 15px 0px";
+  send.style.position="absolute";
+  send.innerHTML="Enviar";
+  send.style.fontFamily="PT Sans";
+  send.style.fontWeight="bold";
+  send.style.color="white";
+
+  chatContainer.appendChild(send);
+
+  var sndbt = document.getElementById("sendButton");
+  sndbt.addEventListener("click", (e)=>{
+    var text = e.target.value;
+    msgGlobe();
+  });
+
+  var intro = document.getElementById("typearea");
+
+  intro.addEventListener("keydown",function(e){
+    if(e.key === 'Enter'){
+      (e)=>{
+        var text = e.target.value;
+        msgGlobe();
+      }
+    }
+  });
+
+}
+
+function msgGlobe(){
+
+  var msg = document.createElement("div");
+  msg.style.width = "400px";
+  msg.style.minHeight = "60px";
+  msg.style.display = "flex";
+  msg.style.backgroundColor = "white";
+  msg.style.borderRadius = "80px 50px 50px 0px";
+  msg.style.fontcolor = "black";  
+  var msgText = document.getElementById("typearea").value;
+  msg.textContent = msgText;
+  messages.appendChild(msg);
 }
 
 

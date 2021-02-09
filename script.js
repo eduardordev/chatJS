@@ -269,6 +269,8 @@ function showChat(){
   
   var messages = document.createElement("div");
 
+  messages.id="messages";
+
   messages.style.background="white";
   messages.style.height="395px";
   messages.style.width="400px";
@@ -290,7 +292,7 @@ function showChat(){
    typearea.style.borderLeft = "none";
    typearea.style.borderRight = "none";
    typearea.style.borderBottom = "none";
-   typearea.style.borderRadius="0px 0px 15px 15px";
+   typearea.style.borderRadius="0px 0px 0px 15px";
    typearea.style.display="relative";
    typearea.style.bottom = "0";
    
@@ -316,33 +318,47 @@ function showChat(){
   chatContainer.appendChild(send);
 
   var sndbt = document.getElementById("sendButton");
-  sndbt.addEventListener("click", (e)=>{
-    var text = e.target.value;
-    msgGlobe();
-  });
+  sndbt.addEventListener("click", validate);
 
   var intro = document.getElementById("typearea");
 
   intro.addEventListener("keydown",function(e){
     if(e.key === 'Enter'){
-      (e)=>{
-        var text = e.target.value;
-        msgGlobe();
-      }
+      validate(e);
     }
   });
 
 }
 
+function validate(e){
+    var text = e.target.value;
+    msgGlobe();
+    clean();
+}
+
+function clean(){
+  document.getElementById("typearea");
+  let cleanTxt = typearea.value;
+  cleanTxt ="";
+}
+
 function msgGlobe(){
 
+  document.getElementById("messages");
+
   var msg = document.createElement("div");
-  msg.style.width = "400px";
-  msg.style.minHeight = "60px";
+  msg.style.width = "275px";
+  msg.style.minHeight = "25px";
   msg.style.display = "flex";
-  msg.style.backgroundColor = "white";
-  msg.style.borderRadius = "80px 50px 50px 0px";
+  msg.style.boxShadow = "5px 5px 5px #9DA5B4";
+  msg.style.marginTop = "8px";
+  msg.style.marginBottom = "8px";
+  msg.style.marginTop = "8px";
+  msg.style.marginLeft = "8px";
+  msg.style.backgroundColor = lightColor;
+  msg.style.borderRadius = "15px 15px 15px 0px";
   msg.style.fontcolor = "black";  
+  msg.style.padding = "12px";
   var msgText = document.getElementById("typearea").value;
   msg.textContent = msgText;
   messages.appendChild(msg);

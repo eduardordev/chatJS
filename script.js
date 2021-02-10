@@ -274,6 +274,7 @@ function showChat(){
   messages.style.background="white";
   messages.style.height="395px";
   messages.style.width="400px";
+  messages.style.overflowY = "scroll";
   chatContainer.appendChild(messages);
 
 //type area
@@ -325,6 +326,7 @@ function showChat(){
   intro.addEventListener("keydown",function(e){
     if(e.key === 'Enter'){
       validate(e);
+       clean();
     }
   });
 
@@ -333,13 +335,12 @@ function showChat(){
 function validate(e){
     var text = e.target.value;
     msgGlobe();
-    clean();
+   
 }
 
 function clean(){
-  document.getElementById("typearea");
-  let cleanTxt = typearea.value;
-  cleanTxt ="";
+  document.getElementById("typearea").value = "";
+  
 }
 
 function msgGlobe(){
@@ -349,9 +350,8 @@ function msgGlobe(){
   var msg = document.createElement("div");
   msg.style.width = "275px";
   msg.style.minHeight = "25px";
-  msg.style.display = "flex";
+  msg.style.display = "relative";
   msg.style.boxShadow = "5px 5px 5px #9DA5B4";
-  msg.style.marginTop = "8px";
   msg.style.marginBottom = "8px";
   msg.style.marginTop = "8px";
   msg.style.marginLeft = "8px";
@@ -359,6 +359,8 @@ function msgGlobe(){
   msg.style.borderRadius = "15px 15px 15px 0px";
   msg.style.fontcolor = "black";  
   msg.style.padding = "12px";
+  msg.style.hyphens = "auto";
+
   var msgText = document.getElementById("typearea").value;
   msg.textContent = msgText;
   messages.appendChild(msg);
